@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Animales</title>
+
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4">
+    </script>
+
+    <style type="text/tailwindcss">
+        @import "tailwindcss";
+
+        @theme {
+
+        }
+
+        @layer base {
+            h1 {
+                @apply text-2xl;
+            }
+
+            body {
+                @apply w-4/5 m-auto bg-gray-300;
+            }
+
+            fieldset {
+                @apply flex flex-row;
+            }
+
+            label {
+                @apply flex-1 h-6;
+            }
+
+            input {
+                @apply flex-2 h-6 border-black border-2 bg-lime-400 hover:bg-purple-400 text-red-600;
+            }
+
+            
+            
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+    <br>
+    <h1>Animales</h1>
+    <br>
+    <form action="">
+        <fieldset>
+            <label for="n1">Escribe un número entero entre 0 y 3</label>
+            <input type="number" id="n1" name="n1">
+        </fieldset>
+        <br>
+        <fieldset>
+            <label for="animal">Escribe un animal</label>
+            <input type="text" id="animal" name="animal">
+        </fieldset>
+        <br>
+    </form>
+    <br>
+    <br>
+    <input type="button" value="Revelar" onclick="revelar()">
+    <input type="button" value="Agregar" onclick="agregar()">
+    <br>
+    <br>
+    
+    <p id="mensaje1"></p>
+
+    <p id="mensaje2"></p>
+
+    <p id="mensaje3"></p>
+
+    <script>
+        const MENSAJE1 = document.getElementById("mensaje1");
+        const MENSAJE2 = document.getElementById("mensaje2");
+        const MENSAJE3 = document.getElementById("mensaje3");
+        const NUM_ANIMAL = document.getElementById("n1");
+        const ANIMAL = document.getElementById("animal")
+
+
+        const animales = [
+            "gato",
+            "perro",
+            "conejo",
+            "perico"
+        ];
+
+        function revelar() {
+            let posición = parseInt(NUM_ANIMAL.value);
+            if (posición < 0 || posición > animales.length -1) {
+                MENSAJE2.innerHTML = `Indica un número entre 0 y ${animales.length-1}`;
+            } else {
+                MENSAJE2.innerHTML = `El animal en la posición ${posición} es el ${animales[posición]}`;
+            }
+        }
+
+        function agregar() {
+            let nuevoAnimal = ANIMAL.value;
+            if (nuevoAnimal == "") {
+                MENSAJE3.innerHTML = "Escribe el nombre de un animal";
+            } else {
+                animales[animales.length] = nuevoAnimal;
+                MENSAJE3.innerHTML = `El animal ${nuevoAnimal} ha sido agregado`;
+                console.table(animales);
+            }
+        }
+
+    </script>
+
+</body>
+
+</html>
+
+
+<!--
+Math.random() crea un numero entre 0 y 0.999...
+si quieres un número en otro range puedes multiplicar x*math.random
+math.floor devuelve el número entero más cerca hacia abajo
+math.ceil deveulve el número entero más cerca hacía arriba
+
+Las variables primitivas se pueden definir con let. Las variables compuestas se definen automaticamente con una referencia a la memoria si se definen con const. Se recomiende definirlos con const
+
+normalmente las constantes que se refieren al HTML o son primitivas se ponen en MAYUSCULAR y las variables const que son objectos o definidas con let en minuscular
+
+un array es constante en el sentido que siempre será un array pero el tamaño puede variar. Y los elementos dentro del array sí pueden cambiar
+ 
+-->

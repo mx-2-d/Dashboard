@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tamagotchi</title>
+
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4">
+    </script>
+
+    <style type="text/tailwindcss">
+        @import "tailwindcss";
+
+        @theme {
+            --color-charcoal: #555555;
+            --color-slime: #A7FC00;
+            --color-pumpkin: #C04000;
+        }
+
+        @layer base {
+            h1 {
+                @apply text-6xl text-center text-slime font-bold mt-10 mb-10;
+            }
+
+            li {
+                @apply m-auto list-decimal text-2xl font-bold text-slime;
+            }
+
+            body {
+                @apply w-2/3 m-auto bg-charcoal;
+            }
+
+            fieldset {
+                @apply border-4 border-pumpkin p-2 flex flex-row gap-5;
+            }
+
+            label {
+                @apply p-1 font-bold border-pumpkin border-2 text-pumpkin bg-slime hover:bg-pumpkin hover:text-slime flex-1;
+            }
+
+            input[type="button"] {
+                @apply p-1 font-bold border-pumpkin border-2 text-pumpkin bg-slime hover:bg-pumpkin hover:text-slime flex-1 block min-w-25 max-w-40 max-h-10;
+            }
+
+            input {
+                @apply p-1 font-bold border-pumpkin border-2 text-pumpkin bg-slime hover:bg-pumpkin hover:text-slime flex-1 block max-h-10;
+            }
+
+            textarea {
+                @apply p-1 font-bold border-pumpkin border-2 text-pumpkin bg-slime hover:bg-pumpkin hover:text-slime flex-1 block min-h-25;
+            }
+
+            select {
+                @apply border-pumpkin border-2 text-pumpkin bg-slime hover:bg-pumpkin hover:text-slime flex-auto mr-18;
+            }
+
+            img {
+                @apply h-100 block m-auto flex-1;
+            }
+            
+            p {
+                @apply text-4xl text-pumpkin p-3 font-bold;
+            }
+            
+            section {
+                @apply border-4 border-pumpkin p-2 flex flex-row gap-5;
+            }
+            
+            
+        }
+
+    </style>
+
+</head>
+
+
+<body class="container">
+
+
+    <input class="float-right mr-5 w-35 bg-pumpkin text-slime hover:bg-black" id="volver" type="button" value="Volver a jugar" onclick="volver()">
+
+    <h1 class="ml-40">Tamagotchi</h1>
+    <br>
+
+    
+
+    <section id="first">
+        <input id="nombre" type="text" name="nombre" placeholder="Escribe el nombre del tamagotchi">
+        <textarea name="personalidad" id="personalidad" placeholder="Describe la personalidad del tamagotchi"></textarea>
+        <input id="crear" type="button" value="Crear" onclick="crear()">
+    </section>
+    <br>
+    <section>
+
+        <div class="flex-2">
+            <img src="tg.png" alt="">
+            <p id="p_nombre" class="text-center text-slime">...</p>
+        </div>
+        <div class="flex-3">
+
+            <div class="flex flex-row">
+
+                <div class="flex-1">
+                    <p>felicidad: </p>
+                    <p>responsabilidad: </p>
+                    <p>limpieza: </p>
+                    <p>energia: </p>
+                    <p>personalidad: </p>
+                </div>
+                <div class="flex-3">
+                    <p id="felicidad" class="p-3">|⚪⚪⚪⚪⚪</p>
+                    <p id="responsabilidad" class="p-3">|⚪⚪⚪⚪⚪</p>
+                    <p id="limpieza" class="p-3">|⚪⚪⚪⚪⚪</p>
+                    <p id="energia" class="p-3">|⚪⚪⚪⚪⚪</p>
+                    <p id="p_personalidad" class="p-3">...</p>
+                </div>
+                
+            </div>
+            
+        </div>
+
+    </section>
+    <br>
+    <section class="flex gap-10 justify-center">
+        <input id="duchar" type="button" value="duchar" onclick="duchar()">
+        <input id="alimentar" type="button" value="alimentar" onclick="alimentar()">
+        <input id="jugar" type="button" value="jugar" onclick="jugar()">
+        <input id="dormir" type="button" value="dormir" onclick="dormir()">
+        <input id="reprender" type="button" value="reprender" onclick="reprender()">
+        <input id="acariciar" type="button" value="acariciar" onclick="acariciar()">
+    </section>
+
+
+
+
+
+
+
+    <script>
+        const tgch = {nombre:"", felicidad: 5, responsabilidad: 5, limpieza: 5, energia: 5, personalidad:""};
+        const tgch_original = {nombre:"", felicidad: 5, responsabilidad: 5, limpieza: 5, energia: 5, personalidad:""};
+        const PERSONALIDAD = document.getElementById("personalidad");
+        const NOMBRE = document.getElementById("nombre");
+        const FIRST = document.getElementById("first");
+        const P_PERSONALIDAD = document.getElementById("p_personalidad");
+        const P_NOMBRE = document.getElementById("p_nombre");
+        const FELICIDAD = document.getElementById("felicidad");
+        const LIMPIEZA = document.getElementById("limpieza");
+        const ENERGIA = document.getElementById("energia");
+        const RESPONSABILIDAD = document.getElementById("responsabilidad");
+
+        function crear() {
+            tgch.nombre = NOMBRE.value;
+            tgch.personalidad = PERSONALIDAD.value;
+            FIRST.classList.add("hidden");
+            P_NOMBRE.innerHTML = tgch.nombre;
+            P_PERSONALIDAD.innerHTML = tgch.personalidad;
+            // repeat string based on value
+            FELICIDAD.innerHTML = ("|" + "⚪".repeat(tgch.felicidad));
+            RESPONSABILIDAD.innerHTML = ("|" + "⚪".repeat(tgch.responsabilidad));
+            LIMPIEZA.innerHTML = ("|" + "⚪".repeat(tgch.limpieza));
+            ENERGIA.innerHTML = ("|" + "⚪".repeat(tgch.energia));
+        }
+
+        function volver() {
+            FIRST.classList.remove("hidden");
+            Object.assign(tgch, tgch_original);
+            NOMBRE.value = "";
+            PERSONALIDAD.value = "";
+            FELICIDAD.innerHTML = ("|" + "⚪".repeat(tgch.felicidad));
+            RESPONSABILIDAD.innerHTML = ("|" + "⚪".repeat(tgch.responsabilidad));
+            LIMPIEZA.innerHTML = ("|" + "⚪".repeat(tgch.limpieza));
+            ENERGIA.innerHTML = ("|" + "⚪".repeat(tgch.energia));
+            P_PERSONALIDAD.innerHTML = "...";
+            P_NOMBRE.innerHTML = "...";
+        }
+
+        function duchar() {
+            tgch.limpieza += 10;
+            tgch.felicidad -= 2;
+            tgch.energia -= 2;
+            if (tgch.limpieza >= 10) tgch.limpieza = 10;
+            if (tgch.felicidad <= 0) tgch.felicidad = 0;
+            if (tgch.energia <= 0) tgch.energia = 0;
+            FELICIDAD.innerHTML = ("|" + "⚪".repeat(tgch.felicidad));
+            RESPONSABILIDAD.innerHTML = ("|" + "⚪".repeat(tgch.responsabilidad));
+            LIMPIEZA.innerHTML = ("|" + "⚪".repeat(tgch.limpieza));
+            ENERGIA.innerHTML = ("|" + "⚪".repeat(tgch.energia));
+        }
+        
+        function alimentar() {
+            tgch.energia += 5;
+            tgch.felicidad += 1;
+            tgch.limpieza -= 2;
+            tgch.responsabilidad -= 1;
+            if (tgch.felicidad >= 10) tgch.felicidad = 10;
+            if (tgch.energia >= 10) tgch.energia = 10;
+            if (tgch.responsabilidad <= 0) tgch.responsabilidad = 0;
+            if (tgch.limpieza <= 0) tgch.limpieza = 0;
+            FELICIDAD.innerHTML = ("|" + "⚪".repeat(tgch.felicidad));
+            RESPONSABILIDAD.innerHTML = ("|" + "⚪".repeat(tgch.responsabilidad));
+            LIMPIEZA.innerHTML = ("|" + "⚪".repeat(tgch.limpieza));
+            ENERGIA.innerHTML = ("|" + "⚪".repeat(tgch.energia));
+        }
+
+        function jugar() {
+            tgch.felicidad += 6;
+            tgch.responsabilidad -= 2;
+            tgch.limpieza -= 4;
+            tgch.energia -= 2;
+            if (tgch.felicidad >= 10) tgch.felicidad = 10;
+            if (tgch.responsabilidad <= 0) tgch.responsabilidad = 0;
+            if (tgch.limpieza <= 0) tgch.limpieza = 0;
+            if (tgch.energia <= 0) tgch.energia = 0;
+            FELICIDAD.innerHTML = ("|" + "⚪".repeat(tgch.felicidad));
+            RESPONSABILIDAD.innerHTML = ("|" + "⚪".repeat(tgch.responsabilidad));
+            LIMPIEZA.innerHTML = ("|" + "⚪".repeat(tgch.limpieza));
+            ENERGIA.innerHTML = ("|" + "⚪".repeat(tgch.energia));
+        }
+
+        function dormir() {
+            tgch.energia += 5;
+            tgch.responsabilidad -= 2;
+            tgch.felicidad += 1;
+            if (tgch.responsabilidad <= 0) tgch.responsabilidad = 0;
+            if (tgch.energia >= 10) tgch.energia = 10;
+            if (tgch.felicidad >= 10) tgch.felicidad = 10;
+            FELICIDAD.innerHTML = ("|" + "⚪".repeat(tgch.felicidad));
+            RESPONSABILIDAD.innerHTML = ("|" + "⚪".repeat(tgch.responsabilidad));
+            LIMPIEZA.innerHTML = ("|" + "⚪".repeat(tgch.limpieza));
+            ENERGIA.innerHTML = ("|" + "⚪".repeat(tgch.energia));
+        }
+
+        function reprender() {
+            tgch.responsabilidad += 5;
+            tgch.felicidad -= 5;
+            if (tgch.responsabilidad >= 10) tgch.responsabilidad = 10;
+            if (tgch.felicidad <= 0) tgch.felicidad = 0;
+            FELICIDAD.innerHTML = ("|" + "⚪".repeat(tgch.felicidad));
+            RESPONSABILIDAD.innerHTML = ("|" + "⚪".repeat(tgch.responsabilidad));
+            LIMPIEZA.innerHTML = ("|" + "⚪".repeat(tgch.limpieza));
+            ENERGIA.innerHTML = ("|" + "⚪".repeat(tgch.energia));
+        }
+
+        function acariciar() {
+            tgch.felicidad += 2;
+            tgch.responsabilidad -= 1;
+            if (tgch.felicidad >= 10) tgch.felicidad = 10;
+            if (tgch.responsabilidad <= 0) tgch.responsabilidad = 0;
+            FELICIDAD.innerHTML = ("|" + "⚪".repeat(tgch.felicidad));
+            RESPONSABILIDAD.innerHTML = ("|" + "⚪".repeat(tgch.responsabilidad));
+            LIMPIEZA.innerHTML = ("|" + "⚪".repeat(tgch.limpieza));
+            ENERGIA.innerHTML = ("|" + "⚪".repeat(tgch.energia));
+        }
+
+
+
+
+    </script>
+
+</body>
+
+</html>
+
+
+<!-- 
+
+-->

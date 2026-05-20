@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tareas</title>
+
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4">
+    </script>
+
+    <style type="text/tailwindcss">
+        @import "tailwindcss";
+
+        @theme {
+            --color-charcoal: #555555;
+            --color-slime: #A7FC00;
+            --color-pumpkin: #C04000;
+        }
+
+        @layer base {
+            h1 {
+                @apply text-6xl text-center text-slime font-bold mt-10 mb-10;
+            }
+
+            li {
+                @apply m-auto list-decimal text-2xl font-bold text-slime;
+            }
+
+            body {
+                @apply w-2/3 m-auto bg-charcoal;
+            }
+
+            fieldset {
+                @apply border-4 border-pumpkin p-2 flex flex-row gap-30;
+            }
+
+            label {
+                @apply p-1 font-bold border-pumpkin border-2 text-pumpkin bg-slime hover:bg-pumpkin hover:text-slime flex-7;
+            }
+
+            input {
+                @apply p-1 font-bold border-pumpkin border-2 text-pumpkin bg-slime hover:bg-pumpkin hover:text-slime flex-10;
+            }
+
+            select {
+                @apply border-pumpkin border-2 text-pumpkin bg-slime hover:bg-pumpkin hover:text-slime flex-auto mr-18;
+            }
+
+            img {
+                @apply h-60 border-2;
+            }
+
+            p {
+                @apply text-pumpkin font-bold;
+            }
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+    
+
+    <fieldset class="border-0 w-1/2 m-auto">
+        <input class="block mt-5 mb-10 mx-auto" type="button" value="Mostrar planetas" onclick="mostrar()">
+    </fieldset>
+    
+
+    <fieldset class="h-110">
+        <p id="list_planetas" class="flex-1"></p>
+    </fieldset>
+    
+    <script>
+        const planetas = ["Mercurio", "Venus", "Tierra", "Marte", "Júpiter", "Saturno", "Urano", "Neptuno", "Plutón"];
+        const LIST_PLANETAS = document.getElementById("list_planetas");
+
+        function mostrar() {
+            let i;
+            for (i of planetas) {
+                console.log(i);
+            }
+            let lista = planetas.join("<br>");
+            LIST_PLANETAS.innerHTML = lista;
+        }
+
+    </script>
+
+</body>
+
+</html>
+
+
+<!-- 
+
+-->

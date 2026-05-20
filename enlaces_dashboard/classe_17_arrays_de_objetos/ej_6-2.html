@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Compras</title>
+
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4">
+    </script>
+
+    <style type="text/tailwindcss">
+        @import "tailwindcss";
+
+        @theme {
+            --color-charcoal: #555555;
+            --color-slime: #A7FC00;
+            --color-pumpkin: #C04000;
+            --color-azure: #0000B8;
+            --color-neon: #E3FF00;
+            --color-neon_p: #FF00CC;
+            --color-moss: #568203;
+            --color-honey: #E6A817;
+            --color-ghost: #F8F8FF;
+            --color-inferno: #A91101;
+        }
+
+        @layer base {
+            h1 {
+                @apply text-6xl text-slime font-bold mt-5 mb-10;
+            }
+
+            li {
+                @apply m-auto list-decimal text-2xl font-bold text-slime;
+            }
+
+            body {
+                @apply bg-ghost;
+            }
+
+            fieldset {
+                @apply border-4 border-pumpkin p-2 flex flex-row shrink flex-wrap;
+            }
+
+            label {
+                @apply font-bold border-pumpkin border-2 text-pumpkin bg-slime hover:bg-pumpkin hover:text-slime flex-8 my-1;
+            }
+
+            input {
+                @apply font-bold border-pumpkin border-2 text-pumpkin bg-slime hover:bg-pumpkin hover:text-slime mr-10 my-1;
+            }
+
+            select {
+                @apply border-pumpkin border-2 text-pumpkin bg-slime hover:bg-pumpkin hover:text-slime flex-auto mr-18;
+            }
+
+            img {
+                @apply h-60;
+            }
+
+            p {
+                @apply text-pumpkin font-bold text-lg;
+            }
+            
+            
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+    <div class="bg-charcoal m-auto p-6 w-4/5 mt-5 shadow-xl shadow-gray-800">
+
+        <h1>Lista de compras</h1>
+        <br>
+        <fieldset>
+            <label for="mes">Agregar un producto</label>
+            <input class="flex-4 mr-5 ml-10" type="text" id="prod" placeholder="Nombre del producto">
+            <input class="flex-4 mr-5" type="number" id="precio" placeholder="Precio del producto">
+            <input class="w-20" type="button" value="Agregar" onclick="agregar()">
+        </fieldset>
+        <br>
+        <fieldset>
+            <label for="mes">Eliminar un producto</label>
+            <input class="flex-8 mr-5 ml-16" type="text" id="elim" placeholder="Escribe la posición del producto para eliminar">
+            <input class="w-20" type="button" value="Eliminar" onclick="eliminar()">
+        </fieldset>
+    
+        <input class="block mt-5 mb-10 mx-auto" type="button" value="Vaciar el carro" onclick="vaciar()">
+
+        <fieldset class="min-h-100">
+            <p id="carro" class="flex-1">El carro está vacio</p>
+            <div>
+                <img src="./shopping-cart.svg" alt="" class="align">
+                <p class="text-center"><span id="nPr" class="text-slime">0</span> productos en el carrito</p>
+                <p class="text-center">Total: <span id="total" class="text-slime">0</span>€</p>
+            </div>
+        </fieldset>
+
+    </div>
+
+    <script>
+        const productos = [];
+        const PROD = document.getElementById("prod");
+        const PRECIO = document.getElementById("precio");
+        const CARRO = document.getElementById("carro");
+        const ELI = document.getElementById("elim");
+        const NPR = document.getElementById("nPr");
+        const TOTAL = document.getElementById("total");
+
+        function agregar() {
+            let prod = PROD.value;
+            let precio = parseFloat(PRECIO.value);
+            let prod_precio = {Nombre: prod, Precio: precio};
+            productos.push(prod_precio);
+            let productosStr = "";
+            let total = 0;
+            for (let i in productos) {
+                total += parseFloat(productos[i].Precio);
+                let n = parseInt(i) + 1;
+                productosStr += n + ". " + productos[i].Nombre + ", " + productos[i].Precio + " €" + "<br><br>";
+            }
+            CARRO.innerHTML = productosStr;
+            NPR.innerHTML = `${productos.length}`;
+            TOTAL.innerHTML = total;
+        }
+
+        function eliminar() {
+            let elimin = parseInt(ELI.value) -1;
+            productos.splice(elimin, 1);
+            let productosStr = "";
+            let total = 0;
+            for (let i in productos) {
+                total += parseFloat(productos[i].Precio);
+                let n = parseInt(i) + 1;
+                productosStr += n + ". " + productos[i].Nombre + ", " + productos[i].Precio + " €" + "<br><br>";
+            }
+            CARRO.innerHTML = productosStr;
+            NPR.innerHTML = `${productos.length}`;
+            TOTAL.innerHTML = total;
+        }
+
+        function vaciar() {
+            productos.splice(0, productos.length);
+            let productosStr = "";
+            let total = 0;
+            for (let i in productos) {
+                total += parseFloat(productos[i].Precio);
+                let n = parseInt(i) + 1;
+                productosStr += n + ". " + productos[i].Nombre + ", " + productos[i].Precio + " €" + "<br><br>";
+            }
+            CARRO.innerHTML = productosStr + "El carro está vacio";
+            NPR.innerHTML = `${productos.length}`;
+            TOTAL.innerHTML = total;
+            PROD.value = "";
+            PRECIO.value = "";
+            ELI.value = "";
+        }
+
+    </script>
+
+</body>
+
+</html>
+
+
+<!-- 
+// for (let i of array) devuelve i = los elementos dentro del array
+// for (let i in array) devuelve i = los indices de los elementos dentro del array
+
+-->

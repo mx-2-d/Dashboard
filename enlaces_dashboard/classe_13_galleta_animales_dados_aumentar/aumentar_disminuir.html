@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Galleta</title>
+
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4">
+    </script>
+
+    <style type="text/tailwindcss">
+        @import "tailwindcss";
+
+        @theme {
+
+        }
+
+        @layer base {
+            h1 {
+                @apply text-6xl text-white;
+            }
+
+            body {
+                @apply w-1/2 m-auto bg-green-800;
+            }
+
+            fieldset {
+                @apply flex flex-row;
+            }
+
+            label {
+                @apply flex-1 h-6;
+            }
+
+            input {
+                @apply m-auto border-black border-2 bg-yellow-400 hover:bg-blue-700;
+            }
+
+            img {
+                @apply h-60 border-2;
+            }
+
+            p {
+                @apply w-1/3 text-5xl text-yellow-400 bg-blue-700;
+            }
+            
+            
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+    <br>
+    <h1>Ciudades</h1>
+    <br>
+    <br>
+    <br>
+    <input type="button" value="Aumentar" onclick="aumentar()">
+    <input type="button" value="Disminuir" onclick="disminuir()">
+    <br>
+    <br>
+    
+    <p id="contenido">Barcelona</p>
+
+    <script>
+        
+        const CONTENIDO = document.getElementById("contenido");
+        let num = 0;
+
+        const ciudades = [
+            "Barcelona",
+            "Dublin",
+            "Bukarest",
+            "Edinborough",
+            "Marseille",
+            "Paris"
+        ]
+
+
+        function aumentar() {
+            if (num > 4) {
+                num = 0;
+                CONTENIDO.innerHTML = ciudades [num];
+            } else {
+                num += 1;
+                CONTENIDO.innerHTML = ciudades [num];
+            }  
+        }
+
+        function disminuir() {
+            if (num <= 0) {
+                num = 5;
+                CONTENIDO.innerHTML = ciudades [num];
+            } else {
+                num -= 1;
+                CONTENIDO.innerHTML = ciudades [num];
+            }  
+        }
+        
+
+    </script>
+
+</body>
+
+</html>
+
+
+<!-- 
+console.table(array) para imprimir array
+
+si hay solo una sola instrucción se puede usar if así sin llaves: if (condición) function(); else function();
+
+otra manera de poner el if:   alert((numhijos > 0) ? "Tiene hijos" : "No tiene hijos");
+
+si conviertes number a boolean, todos los numeros != 0 son TRUE y todos los textos que no son vacios son TRUE
+
+NaN (not a number) es un tipo de variable que se vuelve cuando haces una operación matematica no valida. Undef resulta si creas una variable sin asignar un valor. Null puedes poner a una variable si todavía no sabes el valor, se usa de manera intencional en los bases de datos. Todos estos cuando se convierte a boolean resultan en False
+-->

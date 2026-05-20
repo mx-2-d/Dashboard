@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Experiéncia profesional</title>
+
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4">
+    </script>
+
+    <style type="text/tailwindcss">
+        @import "tailwindcss";
+
+        @theme {
+
+        }
+
+        @layer base {
+            h1 {
+                @apply text-6xl text-white;
+            }
+
+            body {
+                @apply w-1/2 m-auto bg-green-800;
+            }
+
+            fieldset {
+                @apply flex flex-row gap-6;
+            }
+
+            label {
+                @apply border-2 bg-blue-700 text-yellow-400 hover:bg-yellow-400 hover:text-blue-700 flex-1 h-6;
+            }
+
+            input {
+                @apply m-auto border-black border-2 text-blue-700 bg-yellow-400 hover:bg-blue-700 hover:text-yellow-400 flex-1 h-6;
+            }
+
+            img {
+                @apply h-60 border-2;
+            }
+
+            p {
+                @apply text-5xl text-yellow-400 bg-blue-700;
+            }
+            
+            
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+    <br>
+    <h1>Experiéncia profesional</h1>
+    <br>
+    <br>
+    <br>
+    <fieldset>
+        <label for="nombre">Introduce tu nombre</label>
+        <input type="text" id="nombre" name="nombre">
+    </fieldset>
+    <br>
+    <fieldset>
+        <label for="años">Introduce tus años de experiéncia profesional</label>
+        <input type="number" id="años" name="años">
+    </fieldset>
+    <br>
+    <input type="button" value="Mostrar" onclick="mostrar()">
+    <br>
+    <br>
+    
+    <p id="contenido"></p>
+
+    <script>
+        const NOMBRE = document.getElementById("nombre");
+        const AÑOS = document.getElementById("años");
+        const CONTENIDO = document.getElementById("contenido");
+        
+        function mostrar() {
+            let añosN = parseInt(AÑOS.value);
+            if (0 <= añosN && añosN < 2) CONTENIDO.innerHTML = `${NOMBRE.value}: Nivel principiante`;
+            else if (2 <= añosN && añosN <= 4) CONTENIDO.innerHTML = `${NOMBRE.value}: Nivel intermedio`;
+            else if (4 < añosN && añosN <= 7) CONTENIDO.innerHTML = `${NOMBRE.value}: Nivel avanzado`;
+            else if (7 < añosN && añosN <= 10) CONTENIDO.innerHTML = `${NOMBRE.value}: Nivel experto`;
+            else if (añosN > 10) CONTENIDO.innerHTML = `${NOMBRE.value}: Nivel gurú`;
+            else CONTENIDO.innerHTML = `${NOMBRE.value}: El número no es valido`;
+        }
+        
+
+    </script>
+
+</body>
+
+</html>
+
+
+<!-- 
+
+-->

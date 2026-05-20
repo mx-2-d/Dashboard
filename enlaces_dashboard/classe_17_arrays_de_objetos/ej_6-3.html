@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tareas</title>
+
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4">
+    </script>
+
+    <style type="text/tailwindcss">
+        @import "tailwindcss";
+
+        @theme {
+            --color-charcoal: #555555;
+            --color-slime: #A7FC00;
+            --color-pumpkin: #C04000;
+        }
+
+        @layer base {
+            h1 {
+                @apply text-6xl text-center text-slime font-bold mt-10 mb-10;
+            }
+
+            li {
+                @apply m-auto list-decimal text-2xl font-bold text-slime;
+            }
+
+            body {
+                @apply w-2/3 m-auto bg-charcoal;
+            }
+
+            fieldset {
+                @apply border-4 border-pumpkin p-2 flex flex-row gap-10;
+            }
+
+            label {
+                @apply p-1 font-bold text-slime bg-charcoal hover:text-pumpkin flex-4;
+            }
+
+            input {
+                @apply p-1 font-bold border-pumpkin border-2 text-pumpkin bg-slime hover:bg-pumpkin hover:text-slime flex-10;
+            }
+
+            select {
+                @apply border-pumpkin border-2 text-pumpkin bg-slime hover:bg-pumpkin hover:text-slime flex-4 font-bold;
+            }
+
+            img {
+                @apply h-60 border-2;
+            }
+
+            p {
+                @apply text-pumpkin font-bold;
+            }
+            
+            
+        }
+
+    </style>
+
+</head>
+
+<input class="absolute block right-70 top-10 mt-5" type="button" value="Salir / Entrar" onclick="salir()">
+
+<body>
+
+    <main id="bod">
+
+        <h1>Tareas</h1>
+        <br>
+        <fieldset>
+            <label for="tareas">Añadir tarea</label>
+            <input type="text" id="tareas" name="tareas" placeholder="Escribre la tarea">
+            <select name="importancia" id="importancia">
+                <option value="urgente">Urgente</option>
+                <option value="alta">Alta</option>
+                <option value="media">Media</option>
+                <option value="baja">Baja</option>
+            </select>
+            <input class="flex-4" type="date" id="date" name="date" placeholder="Escribre la tarea">
+            <input class="flex-2" type="button" value="Añadir" onclick="agregar()">
+        </fieldset>
+        <br>
+        <fieldset>
+            <label for="elim">Eliminar una tarea</label>
+            <input type="text" id="elim" name="elim" placeholder="Escribe la posición de la tarea para eliminar">
+            <input class="flex-2" type="button" value="Eliminar" onclick="eliminar()">
+        </fieldset>
+    
+        <fieldset class="border-0 w-1/2 m-auto">
+            <input class="block mt-5 mb-10 mx-auto" type="button" value="Mostrar / esconder tareas" onclick="mostrar()">
+        </fieldset>
+        
+        <fieldset class="h-110">
+            <p id="list_tar" class="flex-1"></p>
+        </fieldset>
+
+    </main>
+
+    <script>
+        const tareas = [];
+        const TAR = document.getElementById("tareas");
+        const LIST_TAR = document.getElementById("list_tar");
+        const ELI = document.getElementById("elim");
+        const BOD = document.getElementById("bod");
+        const IMPORTANCIA = document.getElementById("importancia");
+        const DATE = document.getElementById("date");
+
+        // mirar como se puede añadir también el index con la tarea
+        function agregar() {
+            let tar = {Tarea: TAR.value, Importancia: IMPORTANCIA.value, Date: DATE.value};
+            tareas.push(tar);
+        }
+
+        function eliminar() {
+            let elimin = parseInt(ELI.value) -1;
+            tareas.splice(elimin, 1);
+            let txt = "";
+            for (let i in tareas) {
+                i_num = parseInt(i) + 1;
+                txt += i_num + ". " + tareas[i].Tarea + ", " + tareas[i].Importancia + ", " + tareas[i].Date + "<br><br>";
+            }
+            LIST_TAR.innerHTML = txt;
+        }
+
+        function mostrar() {
+            if (LIST_TAR.innerHTML == "") {
+                let txt = "";
+                for (let i in tareas) {
+                    i_num = parseInt(i) + 1;
+                    txt += i_num + ". " + tareas[i].Tarea + ", " + tareas[i].Importancia + ", " + tareas[i].Date + "<br><br>";
+                }
+                LIST_TAR.innerHTML = txt;
+            } else LIST_TAR.innerHTML = "";
+            
+        }
+
+        function salir() {
+            if (BOD.classList.value !== "hidden") BOD.classList.add("hidden");
+            else if (BOD.classList.value == "hidden") BOD.classList.remove("hidden");
+        }
+
+    </script>
+
+</body>
+
+</html>
+
+
+<!-- 
+Para buscar en un array de objetos en JavaScript, los métodos principales son find, filter y findIndex.
+-->

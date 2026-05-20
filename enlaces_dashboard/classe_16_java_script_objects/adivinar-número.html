@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Adivinar</title>
+
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4">
+    </script>
+
+    <style type="text/tailwindcss">
+        @import "tailwindcss";
+
+        @theme {
+            --color-charcoal: #555555;
+            --color-slime: #A7FC00;
+            --color-pumpkin: #C04000;
+        }
+
+        @layer base {
+            h1 {
+                @apply text-6xl text-center text-slime font-bold mt-10 mb-10;
+            }
+
+            li {
+                @apply m-auto list-decimal text-2xl font-bold text-slime;
+            }
+
+            body {
+                @apply w-2/3 m-auto bg-charcoal;
+            }
+
+            fieldset {
+                @apply border-4 border-pumpkin p-2 flex flex-row gap-30;
+            }
+
+            label {
+                @apply p-1 font-bold border-pumpkin border-2 text-pumpkin bg-slime hover:bg-pumpkin hover:text-slime flex-7;
+            }
+
+            input {
+                @apply p-1 font-bold border-pumpkin border-2 text-pumpkin bg-slime hover:bg-pumpkin hover:text-slime flex-10;
+            }
+
+            select {
+                @apply border-pumpkin border-2 text-pumpkin bg-slime hover:bg-pumpkin hover:text-slime flex-auto mr-18;
+            }
+
+            img {
+                @apply h-60 border-2;
+            }
+
+            p {
+                @apply text-pumpkin font-bold;
+            }
+            
+            
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+    <main>
+
+        <h1>Adivinar</h1>
+        <br>
+        <fieldset>
+            <input type="text" id="adivinado" name="adivinado" placeholder="Adivina el número!">
+        </fieldset>
+        <br>
+        <fieldset class="border-0 w-1/2 m-auto">
+            <input id="b_ad" class="block mt-5 mb-10 mx-auto text-center" type="button" value="Adivina el número!" onclick="adivinar()">
+            <input class="block mt-5 mb-10 mx-auto text-center" type="button" value="Volver a jugar!" onclick="volver()">
+        </fieldset>
+        <br>
+        <br>
+        <fieldset class="h-60">
+            <p class="text-center align-middle" id="cal"></p>
+        </fieldset>
+        
+
+    </main>
+
+    <script>
+        let num;
+        const ADIVINADO = document.getElementById("adivinado");
+        const CAL = document.getElementById("cal");
+        const B_AD = document.getElementById("b_ad")
+
+        function definir() {
+            num = parseInt(Math.random() * 500 + 1);
+            console.log(num);
+        }
+
+        function adivinar() {
+            let adiv = ADIVINADO.value
+            if (typeof num == "undefined") definir();
+            
+            if (adiv < 1 || adiv > 500) CAL.innerHTML = "El número tiene que estar entre 1 y 500";
+            // Math.abs returns the absolute value of a number
+            else if (Math.abs(adiv - num) > 50 && adiv > num) CAL.innerHTML = "Frío, frío: tu número es más grande que el mío";
+            else if (Math.abs(adiv - num) > 50 && adiv < num) CAL.innerHTML = "Frío, frío: tu número es más pequeño que el mío";
+            else if (Math.abs(adiv - num) >= 15 && Math.abs(adiv - num) <= 50 && adiv > num) CAL.innerHTML = "Tibio, tibio: tu número es más grande que el mío";
+            else if (Math.abs(adiv - num) >= 15 && Math.abs(adiv - num) <= 50 && adiv < num) CAL.innerHTML = "Tibio, tibio: tu número es más pequeño que el mío";
+            else if (Math.abs(adiv - num) < 15 && Math.abs(adiv - num) > 0 && adiv > num) CAL.innerHTML = "Caliente, caliente: tu número es más grande que el mío";
+            else if (Math.abs(adiv - num) < 15 && Math.abs(adiv - num) > 0 && adiv < num) CAL.innerHTML = "Caliente, caliente: tu número es más pequeño que el mío";
+            else if (adiv == num) {
+                CAL.innerHTML = "Has adivinado el número!!";
+                B_AD.classList.add("hidden");
+            }
+        }
+
+        function volver() {
+            definir();
+            B_AD.classList.remove("hidden");
+            CAL.innerHTML = "";
+        }
+
+        // function 
+        
+
+
+    </script>
+
+</body>
+
+</html>
+
+
+<!-- 
+
+-->

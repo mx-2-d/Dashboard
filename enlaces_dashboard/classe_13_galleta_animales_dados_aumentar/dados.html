@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Galleta</title>
+
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4">
+    </script>
+
+    <style type="text/tailwindcss">
+        @import "tailwindcss";
+
+        @theme {
+
+        }
+
+        @layer base {
+            h1 {
+                @apply text-6xl text-white;
+            }
+
+            body {
+                @apply w-1/2 m-auto bg-green-800;
+            }
+
+            fieldset {
+                @apply flex flex-row;
+            }
+
+            label {
+                @apply flex-1 h-6;
+            }
+
+            input {
+                @apply m-auto border-black border-2 bg-yellow-600 hover:bg-blue-300;
+            }
+
+            img {
+                @apply h-60 border-2;
+            }
+            
+            
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+    <br>
+    <h1>Tirar dados</h1>
+    <br>
+    <br>
+    <img id="img1" src="./img/dado1.png" alt="">
+    <br>
+    <br>
+    <input type="button" value="Tirar dado" onclick="tirar()">
+    <br>
+    <br>
+    
+    <p id="mensaje1"></p>
+
+    <script>
+       
+       const IMG = document.getElementById("img1");
+       const img_arr = [
+            "./img/dado1.png",
+            "./img/dado2.png",
+            "./img/dado3.png",
+            "./img/dado4.png",
+            "./img/dado5.png",
+            "./img/dado6.png"
+       ]
+
+       function tirar() {
+            let num = parseInt(Math.random()*6);
+            console.log(num);
+            IMG.src = img_arr[num];
+       }
+
+    </script>
+
+</body>
+
+</html>
+
+
+<!-- 
+console.table(array) para imprimir array
+-->

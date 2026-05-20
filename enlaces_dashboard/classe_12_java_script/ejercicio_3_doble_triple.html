@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Promedio Notas</title>
+
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4">
+    </script>
+
+    <style type="text/tailwindcss">
+        @import "tailwindcss";
+
+        @theme {
+
+        }
+
+        @layer base {
+            h1 {
+                @apply text-2xl;
+            }
+
+            body {
+                @apply w-4/5 m-auto bg-gray-300;
+            }
+
+            fieldset {
+                @apply flex flex-row;
+            }
+
+            label {
+                @apply flex-1 h-6;
+            }
+
+            input {
+                @apply flex-2 h-6 border-black border-2 bg-lime-400 hover:bg-purple-400 text-red-600;
+            }
+
+            
+            
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+    <br>
+    <h1>Doble y triple de un número entero</h1>
+    <br>
+    <form action="">
+        <fieldset>
+            <label for="n1">Escribe un número entero</label>
+            <input type="number" id="n1" name="n1">
+        </fieldset>
+        <br>
+    </form>
+    <br>
+    <br>
+    <input type="button" value="Doble y triple" onclick="doble_triple()">
+    <br>
+    <br>
+    <p id="resultados"></p>
+
+    <script>
+        const n1 = document.getElementById("n1");
+        const resultados = document.getElementById("resultados")
+
+        function doble_triple() {
+            let doble = parseInt(n1.value)*2;
+            let triple = parseInt(n1.value)*3;
+            resultados.innerHTML = `El doble del número es ${doble} y el triple es ${triple}.`;
+        }
+
+    </script>
+
+</body>
+
+</html>
+
+
+<!-- 
+inputs son etiquetas de controles, no tienen etiqueta de cierre y entonces no tienen innerHTML
+
+Se mapea primero los constantes para buscar los elementos y después se hace operaciones en ellos. Es por si el mismo elemento quieres hacer diferentes operaciones después.
+-->

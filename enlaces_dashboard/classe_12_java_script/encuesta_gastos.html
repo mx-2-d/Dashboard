@@ -1,0 +1,221 @@
+
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Proyecto con Tailwind CSS</title>
+  <!-- Los <link> de las fuentes se colocan en el HTML dado que es la forma más rápida de carga cuando se usa el CDN. -->
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inclusive+Sans:ital,wght@0,300..700;1,300..700&display=swap"
+    rel="stylesheet">
+
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4">
+  </script>
+
+  <style type="text/tailwindcss">
+    @import url('https://fonts.googleapis.com/css2?family=Fontdiner+Swanky&family=Playwrite+DE+SAS:wght@100..400&family=Playwrite+NO:wght@100..400&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+
+    @import "tailwindcss"; 
+    /* Esto carga todo el framework */
+
+    /* Variables de configuración */
+    @theme {
+      --font-sans: "Playwrite DE SAS", "Inclusive Sans", ui-sans-serif, system-ui, sans-serif;
+      --color-brand: #ff4500;
+    }
+
+    /* layer base: estilos globales y "reseteo" de etiquetas HTML puras */
+    /* Permite definir cómo se ve la web "por defecto" antes de empezar a poner clases. */
+
+    @layer base {
+      /* Agregar estilo para todo el documento */
+
+      /* Estilos de los títulos */
+      h1, h2, h3 {
+        @apply font-sans font-bold text-gray-900 mb-6;
+      }
+
+      h1 {
+        @apply text-2xl;
+      }
+
+      h2 {
+        @apply text-xl;
+      }
+
+      fieldset {
+        @apply grid grid-cols-6 grid-rows-5 gap-4 bg-amber-200;
+      }
+
+      fieldset:first-of-type {
+        @apply grid grid-cols-6 grid-rows-2 gap-4 bg-amber-200;
+      }
+
+      input {
+        @apply border-2 hover:bg-blue-500 grid col-start-3 col-end-7;
+      }
+
+      label {
+        @apply col-start-1 col-end-3;
+      }
+
+      form {
+        @apply bg-gray-300
+      }
+
+
+    }
+  
+
+    /* @layer components: Se usa para crear clases complejas reutilizables */
+    /* Se usa cuando se está repitiendo EXACTAMENTE las mismas 10 clases en muchos componentes (por ejemplo botones), para crear una clase propia. */
+
+    @layer components {
+      .btn-principal {
+        @apply px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition;
+      }
+    }
+
+    /* @layer utilities: 
+    Es la capa de clases de un solo propósito y máxima prioridad, incluso por encima de lo que diga la capa base o de componentes. */
+
+    @layer utilities {
+      .rotate-45-extra {
+        transform: rotate(45deg);
+      }
+    }
+
+  </style>
+
+</head>
+
+<body class="container mx-auto w-4/5">
+    <h1>Gastos de la casa</h1>
+    <h1>Todo lo que viene del HTML es un string (texto) y hay que convertirlo</h1>
+  <br>
+  <br>
+    <form class="w-3/5">
+      <h2>Datos</h2>
+      <fieldset>
+        
+        <label class="row-start-1 row-end-2" for="nombre">Tu nombre:</label>
+        <input class="row-start-1 row-end-2" type="text" id="nombre" name="nombre" placeholder="  ...">
+
+        <label class="row-start-2 row-end-3" for="apellido">Apellido:</label>
+        <input class="row-start-2 row-end-3" type="text" id="apellido" name="apellido" placeholder="  ...">
+        
+      </fieldset>
+      <br>
+      <br>
+      <h2>Gastos</h2>
+      <fieldset>
+        
+        <label class="row-start-1 row-end-2" for="internet">Internet:</label>
+        <input class="row-start-1 row-end-2" type="number" id="internet" name="internet" placeholder="  ...">
+      
+
+      
+        <label class="row-start-2 row-end-3" for="luz">Luz:</label>
+        <input class="row-start-2 row-end-3" type="number" id="luz" name="luz" placeholder="  ...">
+      
+      
+      
+        <label class="row-start-3 row-end-4" for="agua">Agua:</label>
+        <input class="row-start-3 row-end-4" type="number" id="agua" name="agua" placeholder="  ...">
+      
+
+      
+        <label class="row-start-4 row-end-5" for="gas">Gas:</label>
+        <input class="row-start-4 row-end-5" type="number" id="gas" name="gas" placeholder="  ...">
+      
+
+      
+        <label class="row-start-5 row-end-6" for="alquiler">Alquiler:</label>
+        <input class="row-start-5 row-end-6" type="number" id="alquiler" name="alquiler" placeholder="  ...">
+
+      </fieldset>
+      <br>
+      <br>
+      <input class="bg-red-900 text-white hover:bg-blue-500 w-2/5" type="submit">
+
+      <input type="button" value="Calcular" onclick="calcular()">
+      <br>
+      <br>
+      <input type="button" value="Rellenar" onclick="rellenar()">
+
+  </form>
+  <br>
+  <br>
+  <p id="totalGastos">
+
+  </p>
+  <br>
+  <br>
+  <br>
+
+
+  <script>
+
+    const nombre = document.getElementById("nombre");
+    const apellido = document.getElementById("apellido");
+    const internet = document.getElementById("internet");
+    const luz = document.getElementById("luz");
+    const agua = document.getElementById("agua");
+    const gas = document.getElementById("gas");
+    const alquiler = document.getElementById("alquiler");
+
+    //Extraer lo que es entre etiquetes de apertura y cierre con el atributo innerHTML
+
+    //.value también lo convierte en type number
+    function calcular() {
+      let nombreVal = nombre.value;
+      let apellidoVal = apellido.value;
+      let internetVal = Number(internet.value);
+      let luzVal = Number(luz.value);
+      let aguaVal = Number(agua.value);
+      let gasVal = Number(gas.value);
+      let alquilerVal = Number(alquiler.value);
+      let totalVal = internetVal + luzVal + aguaVal + gasVal + alquilerVal;
+      
+
+    const totalGastos = document.getElementById("totalGastos");
+
+    totalGastos.innerHTML = `${nombre.value} ${apellido.value}: Tus gastos totales son ${totalVal} euros`;
+    }
+
+    function rellenar() {
+      nombre.value = "Bernd";
+      nombre.title = "Esto es tu nombre";
+      apellido.value = "Schmidt";
+      internet.value = 19;
+      luz.value = 46;
+      agua.value = 23;
+      gas.value = 64;
+      alquiler.value = 345;
+    }
+
+  </script>
+
+</body>
+
+<!-- 
+Para que funciona la extensión Tailwind CSS IntelliSense (Tailwind Labs) hay que poner la linea en una carpeta .css con @import "tailwindcss";   y no se pone link a este stylesheet
+
+La variable @theme para modificar clases mismas
+La variable @layer base para aplicar una clase a todos los elementos de un tipo via css
+En @layer components se crea clases nuevas
+@layer utilities casi no se usa, se usa para cambiar una variable de Tailwind
+Normalmente solo se usa @theme y @layer base
+
+Importar Tailwind: Si lo tienes enlacado con script (<script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4">
+  </script>), no puedes tener un file a parte
+
+En style importante añadir atributo type="text/tailwindcss" para que reconozca el Tailwind
+
+Tailwind es adaptado al mobil, si se quiere adaptar mejor para pantallas más grandes se tiene que adaptar en https://tailwindcss.com/docs/responsive-design
+sm: no se refiere a mobiles, mobiles es default y sm es más tipo tablet
+-->

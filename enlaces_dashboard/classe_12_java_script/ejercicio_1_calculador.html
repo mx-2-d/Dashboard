@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculador</title>
+
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4">
+    </script>
+
+    <style type="text/tailwindcss">
+        @import "tailwindcss";
+
+        @theme {
+
+        }
+
+        @layer base {
+            h1 {
+                @apply text-2xl;
+            }
+
+            body {
+                @apply w-4/5 m-auto;
+            }
+
+            fieldset {
+                @apply flex flex-row;
+            }
+
+            label {
+                @apply flex-1 h-6;
+            }
+
+            input {
+                @apply flex-2 h-6 border-2;
+            }
+
+            
+            
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+    <br>
+    <h1>Formulario</h1>
+    <br>
+    <form action="">
+        <fieldset>
+            <label for="n1">Escribe un número entero a</label>
+            <input type="number" id="n1" name="n1">
+        </fieldset>
+        <br>
+
+        <fieldset>
+            <label for="n2">Escribe otro número entero b</label>
+            <input type="number" id="n2" name="n2">  
+        </fieldset>
+
+    </form>
+    <br>
+    <br>
+    <input type="button" value="Aritmética" onclick="aritmetica()">
+    <br>
+    <br>
+    <p id="resultados"></p>
+
+    <script>
+        const n1 = document.getElementById("n1");
+        const n2 = document.getElementById("n2");
+        const resultados = document.getElementById("resultados")
+
+        function aritmetica() {
+            let suma = parseInt(n1.value) + parseInt(n2.value);
+            let subtraccion = parseInt(n1.value) - parseInt(n2.value);
+            let multiplicacion = parseInt(n1.value) * parseInt(n2.value);
+            let division = parseInt(n1.value) / parseInt(n2.value)
+
+            resultados.innerHTML = `La suma de a + b es ${suma}.<br> La resta de a - b es ${subtraccion}.<br> La multiplicación de a * b es ${multiplicacion}.<br> La división de a / b es ${division}.`;
+
+        }
+
+
+
+    </script>
+
+</body>
+
+</html>
+
+
+<!-- 
+inputs son etiquetas de controles, no tienen etiqueta de cierre y entonces no tienen innerHTML
+
+Se mapea primero los constantes para buscar los elementos y después se hace operaciones en ellos. Es por si el mismo elemento quieres hacer diferentes operaciones después.
+-->

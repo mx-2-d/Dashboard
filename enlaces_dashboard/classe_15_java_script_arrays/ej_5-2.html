@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Concursar</title>
+
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4">
+    </script>
+
+    <style type="text/tailwindcss">
+        @import "tailwindcss";
+
+        @theme {
+            --color-charcoal: #555555;
+            --color-slime: #A7FC00;
+            --color-pumpkin: #C04000;
+        }
+
+        @layer base {
+            h1 {
+                @apply text-6xl text-slime;
+            }
+
+            li {
+                @apply m-auto list-decimal text-2xl font-bold text-slime;
+            }
+
+            body {
+                @apply w-2/3 m-auto bg-charcoal;
+            }
+
+            fieldset {
+                @apply border-4 border-pumpkin p-2 flex flex-row gap-4;
+            }
+
+            label {
+                @apply font-bold border-pumpkin border-2 text-pumpkin bg-slime hover:bg-pumpkin hover:text-slime flex-auto mr-10;
+            }
+
+            input {
+                @apply font-bold border-pumpkin border-2 text-pumpkin bg-slime hover:bg-pumpkin hover:text-slime flex-auto;
+            }
+
+            input [type = "checkbox"] {
+                @apply border-pumpkin border-2 text-pumpkin bg-slime hover:bg-pumpkin hover:text-slime flex-auto h-1/2;
+            }
+
+            select {
+                @apply border-pumpkin border-2 text-pumpkin bg-slime hover:bg-pumpkin hover:text-slime flex-auto mr-18;
+            }
+
+            img {
+                @apply h-60 border-2;
+            }
+
+            p {
+                @apply text-xl text-slime font-bold;
+            }
+            
+            
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <h1>Concursar</h1>
+    <br>
+    <p id="ar1">Participantes: Ana, Oswaldo, Raúl, Celia, María, Antonio</p>
+    <br>
+    <p id="ar2">Participantes actualizadas:</p>
+    <br>
+    <input type="button" value="Concursar" onclick="concursar()">
+    <br>
+    <br>
+
+    <script>
+        const AR1 = document.getElementById("ar1");
+        const AR2 = document.getElementById("ar2");
+
+        const ar = [
+            "Ana",
+            "Oswaldo",
+            "Raúl",
+            "Celia",
+            "María",
+            "Antonio"
+        ]
+
+        function concursar() {
+
+            // splice quita elementos si solo los dos primero parametros se definen (posición, número de elementos para quitar) y añade si el tercer parametro se define (posición, número de elementos para añadir, nombre del elemento para añadir)
+            ar.splice(3,1);
+            ar.splice(2,0,"Celia")
+
+            // Quita el último elemento
+            ar.pop();
+
+            // Añadir dos elementos en posición 1
+            ar.splice(1, 0, "Roberto", "Amaya");
+
+            // Añade un elemento al principio
+            ar.unshift("Marta");
+
+            // Lo convierte a string y se puede especificar el separador
+            let ar_str = ar.join(" ");
+            AR2.innerHTML = "Participantes actualizadas: " + ar_str;
+        }
+
+    </script>
+
+</body>
+
+</html>
+
+
+<!-- 
+
+-->

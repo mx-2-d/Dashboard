@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4">
+    </script>
+
+    <style type="text/tailwindcss">
+        @import "tailwindcss";
+
+        @theme {
+            --color-charcoal: #555555;
+            --color-slime: #A7FC00;
+            --color-pumpkin: #C04000;
+            --color-azure: #0000B8;
+            --color-neon: #E3FF00;
+            --color-neon_p: #FF00CC;
+            --color-moss: #568203;
+            --color-honey: #E6A817;
+            --color-ghost: #F8F8FF;
+            --color-inferno: #A91101;
+        }
+
+        @layer base {
+            h1 {
+                @apply text-5xl text-ghost font-bold my-10 text-center;
+            }
+
+            summary {
+                @apply text-3xl font-bold text-honey hover:bg-inferno list-none;
+            }
+
+            details {
+                @apply mx-10 my-4 border-b-4 border-ghost;
+            }
+
+            li {
+                @apply text-xl text-ghost list-disc p-2 ml-6;
+            }
+
+            a {
+                @apply hover:text-inferno;
+            }
+
+            body {
+                @apply bg-ghost w-2/3 m-auto;
+            }
+
+            fieldset {
+                @apply border-4 border-neon p-2;
+            }
+
+            label {
+                @apply font-bold border-neon border-2 text-honey bg-neon_p hover:bg-neon hover:text-honey mr-10;
+            }
+
+            input {
+                @apply font-bold text-honey bg-neon_p hover:bg-neon hover:text-honey;
+            }
+
+            input[type = "button"] {
+                @apply font-bold text-honey bg-neon_p hover:bg-neon hover:text-honey;
+            }
+
+            input [type = "checkbox"] {
+                @apply border-neon border-2 text-honey bg-neon_p hover:bg-neon hover:text-honey h-1/2;
+            }
+
+            select {
+                @apply border-neon border-2 text-honey bg-neon_p hover:bg-neon hover:text-honey mr-18;
+            }
+
+            img {
+                @apply border-2 border-neon_p;
+            }
+
+            p {
+                @apply text-xl text-honey font-bold;
+            }
+            
+            
+        }
+
+    </style>
+
+</head>
+
+<body class="container">
+    
+    <div class="bg-moss min-h-160 py-2 my-10 shadow-xl shadow-gray-800 rounded-xl">
+
+        <h1>Ejercicios Java Script</h1>
+
+        <div class="flex flex-row">
+            <details class="block flex-1">
+                <summary>Introducción</summary>
+                <ol>
+                    <li><a href="./enlaces_dashboard/classe_12_java_script/encuesta_gastos.html">Encuesta gastos</a></li>
+                    <li><a href="./enlaces_dashboard/classe_12_java_script/test_divertido.html">Test divertido</a></li>
+                </ol>
+            </details>
+
+            <details class="block flex-1">
+                <summary>Entrada y salida de datos</summary>
+                <ol>
+                    <li><a href="./enlaces_dashboard/classe_12_java_script/ejercicio_1_calculador.html">Ejercicio 1</a></li>
+                    <li><a href="./enlaces_dashboard/classe_12_java_script/ejercicio_2_notas.html">Ejercicio 2</a></li>
+                    <li><a href="./enlaces_dashboard/classe_12_java_script/ejercicio_3_doble_triple.html">Ejercicio 3</a></li>
+                    <li><a href="./enlaces_dashboard/classe_12_java_script/ejercicio_4_pintura.html">Ejercicio 4</a></li>
+                </ol>
+            </details>
+        </div>
+
+        <div class="flex flex-row">
+            <details class="block flex-1">
+                <summary>Arrays simples</summary>
+                <ol>
+                    <li><a href="./enlaces_dashboard/classe_13_galleta_animales_dados_aumentar/galletaa.html">Galletas de la fortuna</a></li>
+                    <li><a href="./enlaces_dashboard/classe_13_galleta_animales_dados_aumentar/animales.html">Animales</a></li>
+                    <li><a href="./enlaces_dashboard/classe_13_galleta_animales_dados_aumentar/dados.html">Dados</a></li>
+                    <li><a href="./enlaces_dashboard/classe_13_galleta_animales_dados_aumentar/aumentar_disminuir.html">Aumentar y disminuir</a></li>
+                </ol>
+            </details>
+
+            <details class="block flex-1">
+                <summary>Condicionales</summary>
+                <ol>
+                    <li><a href="./enlaces_dashboard/classe_14_java_script_condicionales/ej_4-1.html">Ejercicio 4-1</a></li>
+                    <li><a href="./enlaces_dashboard/classe_14_java_script_condicionales/ej_4-2.html">Ejercicio 4-2</a></li>
+                    <li><a href="./enlaces_dashboard/classe_14_java_script_condicionales/ej_4-3.html">Ejercicio 4-3</a></li>
+                    <li><a href="./enlaces_dashboard/classe_14_java_script_condicionales/ej_4-4.html">Ejercicio 4-4</a></li>
+                    <li><a href="./enlaces_dashboard/classe_14_java_script_condicionales/ej_4-5.html">Ejercicio 4-5</a></li>
+                    <li><a href="./enlaces_dashboard/classe_14_java_script_condicionales/ej_4-6.html">Ejercicio 4-6</a></li>
+                    <li><a href="./enlaces_dashboard/classe_14_java_script_condicionales/ej_4-7.html">Ejercicio 4-7</a></li>
+                    <li><a href="./enlaces_dashboard/classe_14_java_script_condicionales/ej_4-8.html">Ejercicio 4-8</a></li>
+                    
+                </ol>
+            </details>
+        </div>
+
+        <div class="flex flex-row">
+            <details class="block flex-1">
+                <summary>Arrays</summary>
+                <ol>
+                    <li><a href="./enlaces_dashboard/classe_15_java_script_arrays/ej_5-1.html">Ejercicio 5-1</a></li>
+                    <li><a href="./enlaces_dashboard/classe_15_java_script_arrays/ej_5-2.html">Ejercicio 5-2</a></li>
+                    <li><a href="./enlaces_dashboard/classe_15_java_script_arrays/ej_5-3.html">Ejercicio 5-3</a></li>
+                    <li><a href="./enlaces_dashboard/classe_15_java_script_arrays/ej_5-4.html">Ejercicio 5-4</a></li>
+                    <li><a href="./enlaces_dashboard/classe_15_java_script_arrays/ej_5-5.html">Ejercicio 5-5</a></li>
+                </ol>
+            </details>
+
+            <details class="block flex-1">
+                <summary>Repaso condicionales y Objetos</summary>
+                <ol>
+                    <li><a href="./enlaces_dashboard/classe_16_java_script_objects/adivinar-número.html">Frío Tibido Caliente</a></li>
+                    <li><a href="./enlaces_dashboard/classe_16_java_script_objects/tamagotchi.html">Tamagotchi</a></li>
+                </ol>
+            </details>
+        </div>
+
+        <div class="flex flex-row">
+            <details class="block flex-1">
+                <summary>Arrays de objectos</summary>
+                <ol>
+                    <li><a href="./enlaces_dashboard/classe_17_arrays_de_objetos/ej_6-1.html">Ejercicio 6-1</a></li>
+                    <li><a href="./enlaces_dashboard/classe_17_arrays_de_objetos/ej_6-2.html">Ejercicio 6-2</a></li>
+                    <li><a href="./enlaces_dashboard/classe_17_arrays_de_objetos/ej_6-3.html">Ejercicio 6-3</a></li>
+                </ol>
+            </details>
+
+            <details class="block flex-1">
+                <summary>Bucles - Métodos de String</summary>
+                <ol>
+                    <li><a href="./enlaces_dashboard/classe_19_buscles_string/ej_7-1.html">Ejercicio 7-1</a></li>
+                    <li><a href="./enlaces_dashboard/classe_19_buscles_string/ej-7-2.html">Ejercicio 7-2</a></li>
+                    <li><a href="./enlaces_dashboard/classe_19_buscles_string/ej-7-3.html">Ejercicio 7-3</a></li>
+                    <li><a href="./enlaces_dashboard/classe_19_buscles_string/ej-7-4.html">Ejercicio 7-4</a></li>
+                    <li><a href="./enlaces_dashboard/classe_19_buscles_string/ej-7-5.html">Ejercicio 7-5</a></li>
+                    <li><a href="./enlaces_dashboard/classe_19_buscles_string/ej-7-6.html">Ejercicio 7-6</a></li>
+                    <li><a href="./enlaces_dashboard/classe_19_buscles_string/ej-7-7.html">Ejercicio 7-7</a></li>
+                    <li><a href="./enlaces_dashboard/classe_19_buscles_string/ej-7-8.html">Ejercicio 7-8</a></li>
+                    <li><a href="./enlaces_dashboard/classe_19_buscles_string/ej-7-9.html">Ejercicio 7-9</a></li>
+                </ol>
+            </details>
+        </div>
+
+    </div>
+
+</body>

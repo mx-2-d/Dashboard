@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calcular</title>
+
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4">
+    </script>
+
+    <style type="text/tailwindcss">
+        @import "tailwindcss";
+
+        @theme {
+
+        }
+
+        @layer base {
+            h1 {
+                @apply text-6xl text-yellow-200;
+            }
+
+            body {
+                @apply w-1/2 m-auto bg-green-900;
+            }
+
+            fieldset {
+                @apply border-4 border-yellow-200 p-4 flex flex-row gap-6;
+            }
+
+            label {
+                @apply border-2 bg-blue-800 text-yellow-200 hover:bg-yellow-200 hover:text-blue-800 flex-1 h-6;
+            }
+
+            input {
+                @apply m-auto border-black border-2 text-blue-800 bg-yellow-200 hover:bg-blue-800 hover:text-yellow-200 flex-1 h-6;
+            }
+
+            select {
+                @apply m-auto border-black border-2 text-blue-800 bg-yellow-200 hover:bg-blue-800 hover:text-yellow-200 flex-1 h-6;
+            }
+
+            img {
+                @apply h-60 border-2;
+            }
+
+            p {
+                @apply text-xl text-yellow-200 font-bold;
+            }
+            
+            
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <h1>Calcular</h1>
+    <br>
+    <br>
+    <fieldset>
+        <input type="number" id="n1" name="n1" placeholder="Introduce un número">
+        <input type="number" id="n2" name="n2" placeholder="Introduce otro número">
+        <select name="operador" id="operador">
+            <option value="+">Sumar</option>
+            <option value="-">Subtraer</option>
+            <option value="*">Multiplicar</option>
+            <option value="/">Dividir</option>
+        </select>
+        <br>
+        <br>
+        <input type="button" value="Calcular" onclick="calcular()">
+    </fieldset>
+    
+    <br>
+    <br>
+    
+    <p id="contenido"></p>
+
+    <script>
+        const N1 = document.getElementById("n1");
+        const N2 = document.getElementById("n2");
+        const OPERADOR = document.getElementById("operador");
+        const CONTENIDO = document.getElementById("contenido");
+        
+        function calcular() {
+            let resultado
+
+            if (OPERADOR.value == "+") resultado = parseFloat(N1.value) + parseFloat(N2.value);
+            else if (OPERADOR.value == "-") resultado = parseFloat(N1.value) - parseFloat(N2.value);
+            else if (OPERADOR.value == "*") resultado = parseFloat(N1.value) * parseFloat(N2.value);
+            else if (OPERADOR.value == "/") resultado = parseFloat(N1.value) / parseFloat(N2.value);
+
+            CONTENIDO.innerHTML = `El resultado de ${N1.value} ${OPERADOR.value} ${N2.value} es ${resultado}`
+        }
+        
+
+    </script>
+
+</body>
+
+</html>
+
+
+<!-- 
+
+-->

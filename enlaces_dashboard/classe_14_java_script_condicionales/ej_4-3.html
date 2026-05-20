@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Palabra bonita</title>
+
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4">
+    </script>
+
+    <style type="text/tailwindcss">
+        @import "tailwindcss";
+
+        @theme {
+
+        }
+
+        @layer base {
+            h1 {
+                @apply text-6xl text-white;
+            }
+
+            body {
+                @apply w-1/2 m-auto bg-green-900;
+            }
+
+            fieldset {
+                @apply flex flex-row gap-6;
+            }
+
+            label {
+                @apply border-2 bg-blue-400 text-yellow-200 hover:bg-yellow-200 hover:text-blue-400 flex-1 h-6;
+            }
+
+            input {
+                @apply m-auto border-black border-2 text-blue-400 bg-yellow-200 hover:bg-blue-400 hover:text-yellow-200 flex-1 h-6;
+            }
+
+            img {
+                @apply h-60 border-2;
+            }
+
+            p {
+                @apply text-xl text-yellow-200 font-bold;
+            }
+            
+            
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+    <br>
+    <h1>Palabra bonita</h1>
+    <br>
+    <br>
+    <br>
+    <p>Los estudios lingüísticos modernos dicen que las palabras más bonitas del diccionario son aquellas que contienen 9 letras y empiezan por la letra H, o bien, contienen 5 letras y empiezan por la letra P.</p>
+    <br>
+    <fieldset>
+        <label for="palabra">Introduce una palabra</label>
+        <input type="text" id="palabra" name="palabra">
+    </fieldset>
+    <br>
+    
+    
+
+    <input type="button" value="Mostrar" onclick="bonita()">
+    <br>
+    <br>
+    
+    <p id="contenido"></p>
+
+    <script>
+        const PALABRA = document.getElementById("palabra");
+        const CONTENIDO = document.getElementById("contenido");
+        
+        function bonita() {
+            let palabra = PALABRA.value;
+            if (palabra.length == 9 && palabra.charAt(0) == "H") CONTENIDO.innerHTML = "La palabra es bonita!! :)";
+            else if (palabra.length == 5 && palabra.charAt(0) == "P") CONTENIDO.innerHTML = "La palabra es bonita!! :)";
+            else CONTENIDO.innerHTML = "La palabra es fea!! :("
+        }
+        
+
+    </script>
+
+</body>
+
+</html>
+
+
+<!-- 
+
+-->

@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meses</title>
+
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4">
+    </script>
+
+    <style type="text/tailwindcss">
+        @import "tailwindcss";
+
+        @theme {
+            --color-charcoal: #555555;
+            --color-slime: #A7FC00;
+            --color-pumpkin: #C04000;
+            --color-azure: #0000B8;
+            --color-neon: #E3FF00;
+            --color-neon_p: #FF00CC;
+            --color-moss: #568203;
+            --color-honey: #E6A817;
+            --color-ghost: #F8F8FF;
+            --color-inferno: #A91101;
+        }
+
+        @layer base {
+            h1 {
+                @apply text-6xl text-neon;
+            }
+
+            li {
+                @apply m-auto list-decimal text-2xl font-bold text-neon_p;
+            }
+
+            body {
+                @apply bg-azure;
+            }
+
+            fieldset {
+                @apply border-4 border-neon p-2 flex flex-row gap-4;
+            }
+
+            label {
+                @apply font-bold border-neon border-2 text-neon bg-neon_p hover:bg-neon hover:text-neon_p flex-auto mr-10;
+            }
+
+            input {
+                @apply font-bold border-neon border-2 text-neon bg-neon_p hover:bg-neon hover:text-neon_p flex-auto;
+            }
+
+            input [type = "checkbox"] {
+                @apply border-neon border-2 text-neon bg-neon_p hover:bg-neon hover:text-neon_p flex-auto h-1/2;
+            }
+
+            select {
+                @apply border-neon border-2 text-neon bg-neon_p hover:bg-neon hover:text-neon_p flex-auto mr-18;
+            }
+
+            img {
+                @apply h-60 border-2;
+            }
+
+            p {
+                @apply text-xl text-neon font-bold;
+            }
+            
+            
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+    <div class="bg-neon_p m-auto p-6 w-2/3 min-h-90 mt-20 shadow-xl shadow-gray-800">
+
+        <h1 class="mt-5">Meses</h1>
+        <br>
+        <fieldset>
+            <label for="mes">Escríbe el número de un mes</label>
+            <input type="number" id="mes" placeholder="Número de mes">
+        </fieldset>
+        <br>
+        <br>
+        <input type="button" value="Evaluar" onclick="evaluar()">
+        <br>
+        <br>
+        <p id="contenido"></p>
+    
+    </div>
+
+    <script>
+        const MES = document.getElementById("mes");
+        const CONTENIDO = document.getElementById("contenido");
+        let mes_num;
+
+
+        const meses = [
+            {numeroMes: 1, mesLetra: "Enero", numeroDias: 31},
+            {numeroMes: 2, mesLetra: "Febrero", numeroDias: 28},
+            {numeroMes: 3, mesLetra: "Marzo", numeroDias: 31},
+            {numeroMes: 4, mesLetra: "Abril", numeroDias: 30},
+            {numeroMes: 5, mesLetra: "Mayo", numeroDias: 31},
+            {numeroMes: 6, mesLetra: "Junio", numeroDias: 30},
+            {numeroMes: 7, mesLetra: "Julio", numeroDias: 31},
+            {numeroMes: 8, mesLetra: "Agosto", numeroDias: 31},
+            {numeroMes: 9, mesLetra: "Septiembre", numeroDias: 30},
+            {numeroMes: 10, mesLetra: "Octubre", numeroDias: 31},
+            {numeroMes: 11, mesLetra: "Noviembre", numeroDias: 30},
+            {numeroMes: 12, mesLetra: "Diciembre", numeroDias: 31}
+        ]
+
+        function evaluar() {
+            mes_num = parseInt(MES.value);
+            
+            if (parseInt(MES.value) <= 12 && parseInt(MES.value) >= 1) {
+                let ix = meses.findIndex(x => x.numeroMes == mes_num);
+                CONTENIDO.innerHTML = `El mes ${mes_num} es ${meses[ix].mesLetra} y tiene ${meses[ix].numeroDias} días`
+            } else CONTENIDO.innerHTML = "Elige un número entre 1 y 12";
+        }
+
+        
+
+    </script>
+
+</body>
+
+</html>
+
+
+<!-- 
+array.findIndex(function) returns the index of the first element that returns true for the function
+
+Una expresión de función flecha (=>) es una alternativa compacta a una expresión de función tradicional, pero es limitada y no se puede utilizar en todas las situaciones. Funciona así. function evaluar(a) {a + 12}; se convierte en a => a +12
+-->

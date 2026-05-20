@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Piedra Papel Tijera</title>
+
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4">
+    </script>
+
+    <style type="text/tailwindcss">
+        @import "tailwindcss";
+
+        @theme {
+
+        }
+
+        @layer base {
+            h1 {
+                @apply text-6xl text-yellow-200;
+            }
+
+            li {
+                @apply m-auto list-decimal text-2xl font-bold text-yellow-200;
+            }
+
+            body {
+                @apply w-2/3 m-auto bg-green-900;
+            }
+
+            fieldset {
+                @apply border-4 border-yellow-200 p-2 flex flex-row gap-4;
+            }
+
+            label {
+                @apply border-black border-2 text-blue-800 bg-yellow-200 hover:bg-blue-800 hover:text-yellow-200 flex-auto mr-10;
+            }
+
+            input {
+                @apply border-black border-2 text-blue-800 bg-yellow-200 hover:bg-blue-800 hover:text-yellow-200 flex-auto;
+            }
+
+            input [type = "checkbox"] {
+                @apply border-black border-2 text-blue-800 bg-yellow-200 hover:bg-blue-800 hover:text-yellow-200 flex-auto h-1/2;
+            }
+
+            select {
+                @apply border-black border-2 text-blue-800 bg-yellow-200 hover:bg-blue-800 hover:text-yellow-200 flex-auto mr-18;
+            }
+
+            img {
+                @apply h-60 border-2;
+            }
+
+            p {
+                @apply text-xl text-yellow-200 font-bold;
+            }
+            
+            
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <h1>Jugar a Piedra, Papel o Tijera</h1>
+    <br>
+    <p><ol>
+        <li>👊 Piedra</li>
+        <li>✋ Papel</li>
+        <li>✌ Tijera</li>
+    </ol></p>
+    <br>
+    <fieldset>
+        <input type="number" id="seleccion" placeholder="Selección">
+    </fieldset>
+    <br>
+    <br>
+    <input type="button" value="Evaluar" onclick="jugar()">
+    <br>
+    <br>
+    <p id="contenido"></p>
+
+    <script>
+        const SELECCION = document.getElementById("seleccion");
+        const CONTENIDO = document.getElementById("contenido");
+
+        function jugar() {
+            let sel_ord = parseInt(Math.random() * 3) + 1;
+            let sel = parseInt(SELECCION.value)
+            console.log(sel_ord);
+
+            if (sel_ord == 1 && sel == 1) CONTENIDO.innerHTML = "Yo piedra y tu piedra. Empate!";
+            else if (sel_ord == 1 && sel == 2) CONTENIDO.innerHTML = "Yo piedra y tu papel. Has ganado!";
+            else if (sel_ord == 1 && sel == 3) CONTENIDO.innerHTML = "Yo piedra y tu tijera. He ganado!";
+            else if (sel_ord == 2 && sel == 1) CONTENIDO.innerHTML = "Yo papel y tu piedra. He ganado!";
+            else if (sel_ord == 2 && sel == 2) CONTENIDO.innerHTML = "Yo papel y tu papel. Empate!";
+            else if (sel_ord == 2 && sel == 3) CONTENIDO.innerHTML = "Yo papel y tu tijera. Has ganado!";
+            else if (sel_ord == 3 && sel == 1) CONTENIDO.innerHTML = "Yo tijera y tu piedra. Has ganado!";
+            else if (sel_ord == 3 && sel == 2) CONTENIDO.innerHTML = "Yo tijera y tu papel. He ganado!";
+            else if (sel_ord == 3 && sel == 3) CONTENIDO.innerHTML = "Yo tijera y tu tijera. Empate!";
+            else if (sel < 1 || sel > 3) CONTENIDO.innerHTML = "Entiendo que no quieres jugar. Adiós";
+            else CONTENIDO.innerHTML = "Error";
+        }
+
+    </script>
+
+</body>
+
+</html>
+
+
+<!-- 
+
+-->

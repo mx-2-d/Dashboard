@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sumar numeros incluidos</title>
+
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4">
+    </script>
+
+    <style type="text/tailwindcss">
+        @import "tailwindcss";
+
+        @theme {
+            --color-charcoal: #555555;
+            --color-slime: #A7FC00;
+            --color-pumpkin: #C04000;
+            --color-azure: #0000B8;
+            --color-neon: #E3FF00;
+            --color-neon_p: #FF00CC;
+            --color-moss: #568203;
+            --color-honey: #E6A817;
+            --color-ghost: #F8F8FF;
+            --color-inferno: #A91101;
+            --color-alabaster: #E5E4E2;
+        }
+
+        @layer base {
+            h1 {
+                @apply text-5xl text-black font-bold mt-5 mb-10;
+            }
+
+            li {
+                @apply m-auto list-decimal text-2xl font-bold text-black;
+            }
+
+            body {
+                @apply bg-azure;
+            }
+
+            label {
+                @apply font-bold text-black bg-alabaster hover:bg-azure hover:text-alabaster p-1;
+            }
+
+            input {
+                @apply font-bold border-black border-2 text-black bg-alabaster hover:bg-azure hover:text-alabaster p-1;
+            }
+
+            select {
+                @apply border-black border-2 text-black bg-alabaster hover:bg-azure hover:text-alabaster;
+            }
+
+            img {
+                @apply h-60;
+            }
+
+            p {
+                @apply text-black font-bold text-lg;
+            }
+            
+            
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+    <div class="bg-alabaster m-auto p-6 w-4/5 mt-5 shadow shadow-black border-2 border-black border-t-8 border-t-black min-h-80">
+
+        <h1>Sumar numeros incluidos</h1>
+
+        <div class="flex gap-4">
+            <input class="flex-3" type="text" id="n1" placeholder="Escribe el primer número">
+            <input class="flex-3" type="number" id="n2" placeholder="Escribe el segundo número">
+            <input class="flex-2" type="button" value="Suma de los valores comprendidos" onclick="sumar()">
+        </div>
+
+        <p class="mt-12" id="contenido"></p>
+    </div>
+
+    <script>
+        const CONTENIDO = document.getElementById("contenido");
+        const N1 = document.getElementById("n1");
+        const N2 = document.getElementById("n2");
+
+        function sumar() {
+            let suma = 0;
+            for (let i = N1.value; i <= N2.value; i++ ) {
+                suma += parseFloat(i);
+            }
+            CONTENIDO.innerHTML = `La suma de los valores comprendidos es ${suma}`
+        }
+
+    </script>
+
+    </body>
+
+</html>
