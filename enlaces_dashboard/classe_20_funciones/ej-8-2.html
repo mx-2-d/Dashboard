@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NIF</title>
+
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4">
+    </script>
+
+    <style type="text/tailwindcss">
+        @import "tailwindcss";
+
+        @theme {
+            --color-charcoal: #555555;
+            --color-slime: #A7FC00;
+            --color-pumpkin: #C04000;
+            --color-azure: #0000B8;
+            --color-neon: #E3FF00;
+            --color-neon_p: #FF00CC;
+            --color-moss: #568203;
+            --color-honey: #E6A817;
+            --color-ghost: #F8F8FF;
+            --color-inferno: #A91101;
+            --color-alabaster: #E5E4E2;
+        }
+
+        @layer base {
+            h1 {
+                @apply text-5xl text-black font-bold mt-5 mb-10;
+            }
+
+            li {
+                @apply m-auto list-decimal text-2xl font-bold text-black;
+            }
+
+            body {
+                @apply bg-azure;
+            }
+
+            label {
+                @apply font-bold text-black bg-alabaster hover:bg-azure hover:text-alabaster p-1;
+            }
+
+            input {
+                @apply font-bold border-black border-2 text-black bg-alabaster hover:bg-azure hover:text-alabaster p-1;
+            }
+
+            select {
+                @apply border-black border-2 text-black bg-alabaster hover:bg-azure hover:text-alabaster;
+            }
+
+            img {
+                @apply h-60;
+            }
+
+            p {
+                @apply text-black font-bold text-lg;
+            }
+            
+            
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+    <div class="bg-alabaster m-auto p-6 w-4/5 mt-5 shadow shadow-black border-2 border-black border-t-8 border-t-black min-h-90">
+
+        <h1>Comprobar si la letra del NIF es correcta</h1>
+
+        <div class="flex gap-4">
+            <input class="flex-4" type="text" id="num" placeholder="Escribre los 8 número y la letra del DNI sin separación">
+            <input class="flex-1" type="button" value="Comprobar si la letra del NIF es correcta" onclick="comprobar()">
+        </div>
+
+        <p class="my-12 text-center text-2xl italic" id="contenido"></p>
+    </div>
+
+    <script>
+        const CONTENIDO = document.getElementById("contenido");
+        const arr_nif = ["T","R","W","A","G","M","Y","F","P","D","X","B","N","J","Z","S","Q","V","H","L","C","K","E"];
+
+        const NUM = document.getElementById("num");
+
+        function comprobar() {
+            let num = NUM.value;
+            let letra = num.charAt(num.length - 1);
+            num = num.slice(0,num.length - 1)
+            let letra_verdad = nif(num);
+            if (letra == letra_verdad) CONTENIDO.innerHTML = "La letra es correcta";
+            else if (letra !== letra_verdad) CONTENIDO.innerHTML = "La letra no es correcta";
+        }
+
+        function nif(a) {
+            let x = parseInt(a);
+            let p = x / 23;
+            let q = parseInt(p) * 23;
+            let u = x - q;
+            return arr_nif[u];
+        }
+
+
+    </script>
+
+    </body>
+
+</html>
+
+<!-- Mejor sería hacer esto con while y que pare la busqueda de divisores cuando ha encontrado uno que no es 1 o el número mismo. Así se puede hacer lo mismo en menos pasos -->

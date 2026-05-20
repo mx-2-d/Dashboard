@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Numero más alto</title>
+
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4">
+    </script>
+
+    <style type="text/tailwindcss">
+        @import "tailwindcss";
+
+        @theme {
+
+        }
+
+        @layer base {
+            h1 {
+                @apply text-6xl text-white;
+            }
+
+            body {
+                @apply w-1/2 m-auto bg-green-800;
+            }
+
+            fieldset {
+                @apply flex flex-row gap-6;
+            }
+
+            label {
+                @apply border-2 bg-blue-700 text-yellow-400 hover:bg-yellow-400 hover:text-blue-700 flex-1 h-6;
+            }
+
+            input {
+                @apply m-auto border-black border-2 text-blue-700 bg-yellow-400 hover:bg-blue-700 hover:text-yellow-400 flex-2 h-6;
+            }
+
+            img {
+                @apply h-60 border-2;
+            }
+
+            p {
+                @apply text-5xl text-yellow-400 bg-blue-700;
+            }
+            
+            
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+    <br>
+    <h1>Numero más alto</h1>
+    <br>
+    <br>
+    <br>
+    <fieldset>
+        <label for="n1">Introduce un número</label>
+        <input type="number" id="n1" name="n1">
+    </fieldset>
+    <br>
+    <fieldset>
+        <label for="n2">Introduce otro número</label>
+        <input type="number" id="n2" name="n2">
+    </fieldset>
+    <br>
+    <input type="button" value="Determinar" onclick="determinar()">
+    <br>
+    <br>
+    
+    <p id="contenido"></p>
+
+    <script>
+        const N1 = document.getElementById("n1");
+        const N2 = document.getElementById("n2");
+        const CONTENIDO = document.getElementById("contenido");
+        
+        const determinar = () => {
+            if (parseInt(N1.value) > parseInt(N2.value)) CONTENIDO.innerHTML = `El número mayor es ${N1.value}.`;
+            else if (parseInt(N1.value) == parseInt(N2.value)) CONTENIDO.innerHTML = "Los números son iguales.";
+            else CONTENIDO.innerHTML = `El número mayor es ${N2.value}.`;
+        }
+        
+
+    </script>
+
+</body>
+
+</html>
+
+
+<!-- 
+
+-->
